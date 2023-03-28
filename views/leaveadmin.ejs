@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Leave || Admin</title>
+	<link rel="stylesheet" href="/css/leaves.css">
+	<script id="scripts" type="text/javascript" src="/scripts.js?c297ffc94dc8b1cc0bf99a59b92ce1f9f01f5208"></script>
+
+	<meta name="referrer" content="same-origin" />
+
+	<link rel="icon" sizes="16x16" type="image/png" href="assets/favicon_16.png" />
+	<link rel="icon" sizes="32x32" type="image/png" href="assets/favicon_32.png" />
+	<link rel="icon" sizes="any" type="image/svg+xml" href="assets/favicon.svg" />
+	<title>eSparkBiz - Rocket.Chat</title>
+	<meta name="application-name" content="eSparkBiz - Rocket.Chat">
+	<meta name="apple-mobile-web-app-title" content="eSparkBiz - Rocket.Chat">
+	<meta http-equiv="content-language" content="">
+	<meta name="language" content="">
+	<meta name="robots" content="INDEX,FOLLOW">
+	<meta name="msvalidate.01" content="">
+	<meta name="google-site-verification" content="">
+	<meta property="fb:app_id" content="">
+
+	<base href="/">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+	<!-- material icons -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+		integrity="sha384-FWTLn9R18Q1ACmGvJK8Q1An+kjAXLwDmvoYASmz8mWJ28AVj+rq51aqyvMabpqgW" crossorigin="anonymous">
+
+	<!-- stylesheet -->
+	<link rel="stylesheet" href="/css/leaves.css">
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="dashboard">
+
+			<div>
+				<h1>Attendance</h1>
+			</div>
+
+			<div>
+				<div class="gadgets-side__header">
+					<button class="menu-button" id="menu-btn">
+						<span class="material-icons-sharp menu-button__icon">menu</span>
+					</button>
+
+					<div class="theme-toggler">
+						<span class="
+				  material-icons-sharp 
+				  theme-toggler__button
+				  theme-toggler__button--light
+				  theme-toggler__button--active">light_mode</span>
+						<span class="
+				  material-icons-sharp 
+				  theme-toggler__button--dark
+				  theme-toggler__button">dark_mode</span>
+					</div>
+
+					<div class="profile">
+						<div class="profile__info">
+							<p>Hey, <b>Jyotsana</b></p>
+							<small class="text-muted">SDL-1</small>
+						</div>
+						<div>
+							<img class="profile__photo" src="/assets/profile-3.jpg" alt="profile-picture">
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="showdata">
+			<table class="tab">
+				<tr>
+					<div class="column-entry">
+						<div class="coll">
+							<h4>Name</h4>
+						</div>
+						<div class="coll">
+							<h4>Leave Date</h4>
+						</div>
+						<div class="coll">
+							<h4>Leave Type</h4>
+						</div>
+						<div class="coll">
+							<h4>Leave Reason</h4>
+						</div>
+						<div class="coll">
+							<h4>Half Day</h4>
+						</div>
+						<div class="coll">
+							<h4>Status</h4>
+						</div>
+				</tr>
+				<% for(let i=0;i<showquery[0].length;i++) { %>
+					 
+				<tr>
+					<div class="column2">
+						<div class="col-admin">
+							<p>
+								<%= showquery[0][i].full_name %>
+							</p>
+						</div>
+						<div class="col-admin">
+							<p>
+								<%= showquery[0][i].leave_date.toLocaleDateString() %>
+							</p>
+						</div>
+						<div class="col-admin">
+							<p>
+								<%= showquery[0][i].leave_type %>
+							</p>
+						</div>
+						<div class="col-admin">
+							<p>
+								<%= showquery[0][i].leave_reason.substr(0,6) %>
+							</p>
+						</div>
+						<div class="col-admin">
+							<p>
+								<%= showquery[0][i].half_day %>
+							</p>
+						</div>
+						<div class="col-admin">
+							<input type="button" onclick="show('<%= showquery[0][i].id %>')" value="View">
+						</div>
+					</div>
+				</tr>
+				<%   } %>
+
+			</table>
+			<div id="leaves">
+
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/js/leaveadmin.js">
+	
+</script>

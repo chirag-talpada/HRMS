@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css"
+      integrity="sha512-gRH0EcIcYBFkQTnbpO8k0WlsD20x5VzjhOA1Og8+ZUAhcMUCvd+APD35FJw3GzHAP3e+mP28YcDJxVr745loHw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" href="/css/SlideForm.png">
+    <link rel="stylesheet" href="/css/register.css" />
+    <title>eSparkBiz | Authentication</title>
+  </head>
+
+
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up-container" style="margin-top: -20px;">
+        <form action="/register" method="post" id="my-form">
+          <img src="/assets/espark_logo.png" alt="espark logo">
+
+          <h1 style="margin-bottom: 5px; font-size: 21px;">Create an Account</h1>
+         
+          <input type="email" placeholder="Email" name="email" id="email" onkeyup="checkIfExistsEmail(this)" autocomplete="false"/>
+          <span class="mtop-30 messgae hidden green" id="email_available">This email is available</span>
+          <span class="mtop-30 messgae hidden red left" id="email_unavailable" >This email is not available</span>
+
+          <input type="password" placeholder="Password" id="password" name="password"/>
+          <span id="perror" class="hidden"></span>
+
+          <input type="password" placeholder="Retype Password" id="repassword" />
+          <span id="reerror" class="hidden"></span>
+
+          <input type="submit" value="Submit" id="submit-btn">
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form id="login-form" action="/login" method="POST" id="form">
+          <img src="/assets/espark_logo.png" alt="espark logo">
+          <h1 style="margin-bottom: 0px;">Sign in</h1>
+          <p style="margin-bottom: 20px; color: #8a8484;">Enter your credentials to get started</p>
+         
+          <input type="email" placeholder="Email" name="email" id="lg-email"/>
+          <input type="password" placeholder="Password" name="password" id="lg-password"/>
+          <div id="ip">
+
+          </div>
+          <a href="#">Forgot your password?</a>
+          <button id="signin-btn">Sign In</button>
+        </form>
+      </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Aboard!</h1>
+            <p style="margin-bottom: 30px;">
+              To keep track of your activities, please register an account from here.
+            </p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Ahoy, Captain!</h1>
+            <p>Please log in to your existing HRMS account to get started.</p>
+
+            <p>Don't have an account?</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    
+    <div class="mobile-message hidden">
+      This Website is not accessible in mobile devices.
+  </div>
+    <script>
+      const signUpButton = document.getElementById("signUp");
+      const signInButton = document.getElementById("signIn");
+      const container = document.getElementById("container");
+
+      signUpButton.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+      });
+
+      signInButton.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+      });
+    </script>
+
+    <script src="/js/register.js"></script>
+  </body>
+</html>

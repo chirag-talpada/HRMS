@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaves Manager</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+        integrity="sha384-FWTLn9R18Q1ACmGvJK8Q1An+kjAXLwDmvoYASmz8mWJ28AVj+rq51aqyvMabpqgW" crossorigin="anonymous">
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="/css/leaves.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script id="scripts" type="text/javascript" src="/scripts.js?c297ffc94dc8b1cc0bf99a59b92ce1f9f01f5208"></script>
+    <script type="text/javascript" src="/js/leaves.js"></script>
+
+    <style>
+        .flex {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 0 30px;
+            font-family: 'Hanken Grotesk', sans-serif;
+            font-weight: bolder;
+        }
+
+        p {
+            font-size: 13px !important
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <%- include('./common/sidebar') %>
+            <main>
+
+                <div class="dashboard">
+                    <div>
+                        <h1>Hotline</h1>
+                    </div>
+                    <div>
+                        <div class="gadgets-side__header">
+                            <button class="menu-button" id="menu-btn">
+                                <span class="material-icons-sharp menu-button__icon">menu</span>
+                            </button>
+
+                            <div class="theme-toggler">
+                                <span class="
+                                material-icons-sharp 
+                                theme-toggler__button
+                                theme-toggler__button--light
+                                theme-toggler__button--active">light_mode</span>
+                                <span class="
+                                material-icons-sharp 
+                                theme-toggler__button--dark
+                                theme-toggler__button">dark_mode</span>
+                            </div>
+
+                            <div class="profile">
+                                <div class="profile__info">
+                                    <p>Hey, <b>Jyotsana</b></p>
+                                    <small class="text-muted">SDL-1</small>
+                                </div>
+                                <div>
+                                    <img class="profile__photo" src="/assets/profile-3.jpg" alt="profile-picture">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="main-content">
+                    <div class="flex">
+                        <div class="card-1" id="one">
+                            <p>Casual Leaves</p>
+                            <p>
+                                <%= leaveRemaining[0] %> out of <%= allowed[0] %>
+                            </p>
+                        </div>
+                        <div class="card-1" id="two">
+                            <p>Sick Leaves</p>
+                            <p>
+                                <%= leaveRemaining[1] %> out of <%= allowed[1] %>
+                            </p>
+                        </div>
+                        <div class="card-1" id="three">
+                            <p>Unplanned Leaves</p>
+                            <p>
+                                <%= leaveRemaining[2] %> out of <%= allowed[2] %>
+                            </p>
+                        </div>
+                        <div class="card-1" id="four">
+                            <p>Planned Leaves </p>
+                            <p>
+                                <%= leaveRemaining[3] %> out of <%= allowed[3] %>
+                            </p>
+                        </div>
+
+                    </div>
+                    <div class="content">
+
+                        <div class="search">
+                            <input type="text" placeholder="Search...">
+                        </div>
+                        <div class="status">
+                            <select class="status" name="status" onchange="getData(this)">
+                                <option value="All">Status:All<i class="bi bi-chevron-down"></i></option>
+                                <option value="accepted">Accepted</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="pending">Pending</option>
+                                <option value="WFH">WFH</option>
+                                <option value="Cancel">Cancel</option>
+                            </select>
+                        </div>
+                        <div id="leaves">
+                            <div class="show hidden">
+                                <div class="heading">
+                                    <h3>Add leave</h3>
+                                </div>
+                                <div class="leavecontent">
+                                    <div class="ldata">
+                                        <label for="ld">Leave Date
+                                    </div>
+                                    <div class="ldata">
+                                        <label for="lt">Leave Type
+                                    </div>
+                                    <div class="ldata">
+                                        <label for="hd">Half day
+                                    </div>
+                                </div>
+                                <div class="leavecontent">
+                                    <div class="ld">
+                                        <input type="date" id="date" name="date" placeholder="Leave Date"
+                                            min="<%= currentDate %>">
+                                    </div>
+                                    <div class="lt">
+                                        <select name="type" id="type">
+                                            <option value="SL">Sick Leave</option>
+                                            <option value="CL">Casual Leave</option>
+                                            <option value="PL">Planned Leave</option>
+                                            <option value="UPL">Unplanned Leave</option>
+                                        </select>
+                                    </div>
+                                    <div class="hdin">
+                                        <select name="day" id="day">
+                                            <option value="1">Yes</option>
+                                            <option value="0" selected>No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="reason">
+                                    <label for="reason">Reason<br>
+                                        <!-- <input type="textarea" id="reason" name="reason"> -->
+                                        <textarea name="reason" id="reason" rows="5"></textarea>
+                                </div>
+                                <div class="apply">
+                                    <input type="button" onclick="cancelleaves()" class="applied" id="two"
+                                        value="Cancel">
+                                    <input type="button" onclick="addleaves()" class="applied" id="one" value="Apply">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add">
+                            <input type="button" value="+Add" onclick="addleave()">
+                        </div>
+                    </div>
+
+                    <div class="showdata">
+                        <table class="tab">
+                            <tr>
+                                <div class="column-entry">
+                                    <div class="coll">
+                                        <h4>Leave Type</h4>
+                                    </div>
+                                    <div class="coll">
+                                        <h4>Date</h4>
+                                    </div>
+                                    <div class="coll">
+                                        <h4>Half Day</h4>
+                                    </div>
+                                    <div class="coll">
+                                        <h4>Reason</h4>
+                                    </div>
+                                    <div class="coll">
+                                        <h4>Status</h4>
+                                    </div>
+                                </div>
+                            </tr>
+
+                            <% for(let i=0;i<showquery[0].length;i++) { %>
+                                <tr class="row">
+                                    <div class="column2">
+                                        <div class="col">
+                                            <p>
+                                                <%= showquery[0][i].leave_type %>
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <p>
+                                                <%= showquery[0][i].leave_date.toLocaleDateString() %>
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <% if(showquery[0][i].half_day=="1" ) { %>
+                                                <p>Yes</p>
+                                                <% } %>
+
+                                                    <% if(showquery[0][i].half_day=="0" ) { %>
+                                                        <p>No</p>
+                                                        <% } %>
+                                        </div>
+                                        <div class="col">
+                                            <p>
+                                                <%= showquery[0][i].leave_reason.substr(0, 20)%>..
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="<% if(showquery[0][i].leave_status== " rejected") { %>red <% } %>
+                                                    <% if(showquery[0][i].leave_status=="accepted" ) { %> green <% } %>
+                                                            "><%= showquery[0][i].leave_status%>
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </tr>
+                                <% } %>
+                        </table>
+
+                    </div>
+                </div>
+    </div>
+    </div>
+
+    </div>
+</body>
+
+<script>
+    function addleave() {
+        document.querySelector(".show").classList.remove("hidden")
+    }
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+</html>

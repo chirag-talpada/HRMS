@@ -1,0 +1,62 @@
+<aside class="sidebar" id="sidebar">
+
+    <!-- top sidebar -->
+    <div class="sidebar__header">
+        <img class="sidebar__image" src="/assets/espark_logo.png" alt="logo_admin">
+        
+    </div>
+    <div class="sidebar__close" id="close-btn">
+        <span class="material-icons-sharp">close</span>
+    </div>
+    <!-- content sidebar -->
+    <div class="sidebar__content">
+
+        <a class="sidebar__item <% if(activatePage=="home") {%>sidebar__item--active<%}%>" href="/self/home">
+            <span class="material-icons-sharp sidebar__item-icon sidebar__item-icon--active">grid_view</span>
+            <h3 class="sidebar__item-text">Dashboard</h3>
+        </a>
+
+        <a class="sidebar__item <% if(activatePage=="hotline") {%>sidebar__item--active<%}%>" href="/self/hotline">
+            <span class="material-symbols-outlined sidebar__item-icon">person_search</span>
+            <h3 class="sidebar__item-text">Hotline</h3>
+        </a>
+
+        <a class="sidebar__item" href="#">
+            <span class="material-symbols-outlined sidebar__item-icon">calendar_month</span>
+            <h3 class="sidebar__item-text">Calender</h3>
+        </a>
+
+        <a class="sidebar__item" href="#">
+            <span class="material-symbols-outlined sidebar__item-icon">newspaper</span>
+            <h3 class="sidebar__item-text">News</h3>
+            <!-- <span class="sidebar__message-count">26</span> -->
+        </a>
+        <a class="sidebar__item <% if(activatePage=="attendance") {%>sidebar__item--active<%}%>" href="/self/attendance-report">
+            <span class="material-symbols-outlined sidebar__item-icon">schedule</span>
+            <h3 class="sidebar__item-text">Attendance</h3>
+
+        </a>
+
+        <a class="sidebar__item <% if(activatePage=="leave") {%>sidebar__item--active<%}%>" href="/leaves">
+            <span class="material-icons-sharp sidebar__item-icon">inventory</span>
+            <h3 class="sidebar__item-text">Leaves</h3>
+        </a>
+
+        <a class="sidebar__item" href="#">
+            <span class="material-symbols-outlined sidebar__item-icon">forum</span>
+            <h3 class="sidebar__item-text">Sensation</h3>
+        </a>
+
+        <a class="sidebar__item" href="#">
+            <span class="material-icons-sharp sidebar__item-icon">settings</span>
+            <h3 class="sidebar__item-text">Settings</h3>
+        </a>
+
+        <a class="sidebar__item" href="/logout">
+            <span class="material-icons-sharp sidebar__item-icon">logout</span>
+            <h3 class="sidebar__item-text">Logout</h3>
+        </a>
+
+    </div>
+</aside>
+<!-- END OF SIDEBAR -->

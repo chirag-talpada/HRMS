@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eSparkBiz | HRMS</title>
+
+    <!-- Google Fonts Poppins-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+
+
+    <!-- stylesheet -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="/css/style.css">
+
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <%- include('./common/sidebar') %>
+            <main>
+
+                <div class="dashboard">
+                    <h1>Dashboard</h1>
+
+
+                    <!-- Insights -->
+                    <div class="dashboard__insights">
+
+                        <!-- CARD OF SALES -->
+                        <div class="card">
+                            <div class="attandance">
+                                <h3 class="card-title">Record Your Attandance</h3>
+                            </div>
+                            <div class="hr-line"></div>
+                            <div class="record">
+                                <div class="row1">
+                                    <span class="card-title-small">Attandance</span>
+                                    <p>
+                                        <%= attendanceDays %> Days
+                                    </p>
+                                </div>
+                                <div class="row1">
+                                    <span class="card-title-small">Late</span>
+                                    <p>
+                                        <%= lateDaysCount %> Days
+                                    </p>
+                                </div>
+                                <div class="row1">
+                                    <span class="card-title-small">Absent</span>
+                                    <p> 12 Day</p>
+                                </div>
+                                <div class="row1">
+                                    <span class="card-title-small">Half Days</span>
+                                    <p> 1 Day</p>
+                                </div>
+                                <div class="row1">
+                                    <span class="card-title-small">Worked Hours</span>
+                                    <p>
+                                        <%= hoursWorked %> Hours
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- CARD OF  EXPENSES-->
+                        <div class="card">
+                            <div class="comment">
+                                <h3 class="card-title">Add Your Comments</h3>
+                            </div>
+                            <div class="hr-line"></div>
+                            <div class="add_comment">
+                                <div class="input">
+                                    <input type="text" placeholder="Type here.."  id="text" onkeyup="validate_comment()">
+                                </div>
+                                <div>
+                                    <button id="submit" onclick="addcomment()" class="disabling" disabled>Comment</button>
+                                </div>
+                            </div>
+                            <div id="comment-wrapper">
+                            <% for(var i=0; i<commentResult?.length; i++){%>
+                                <div class="see-comment" id="see-comment">
+                                   <p> <%= commentResult[i].comment %></p>
+                                </div>
+                            <%}%>
+                        </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <!-- Recent Orders -->
+
+                    <div class="recent-order">
+                        <div class="card">
+                            <div class="head">
+                                <div>
+                                    <h3 class="card-title">Today's Employee Activities</h3>
+                                </div>
+                                <div class="activity-search">
+                                    <input type="text" placeholder="Search here.." name="search" id="search">
+                                    <div class="material-icons-sharp" id="renew">autorenew</div>
+                                </div>
+                            </div>
+                            <div class="hr-line"></div>
+                            <div class="scroll">
+                                <div class="activity-logs-container" id="logs-container">
+                                    <!-- activity logs will come here -->
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Side -->
+            <div class="gadgets-side">
+
+                <div class="gadgets-side__header">
+                    <button class="menu-button" id="menu-btn">
+                        <span class="material-icons-sharp menu-button__icon">menu</span>
+                    </button>
+
+                    <div class="theme-toggler">
+                        <span class="
+                        material-icons-sharp 
+                        theme-toggler__button
+                        theme-toggler__button--light
+                        theme-toggler__button--active">light_mode</span>
+                        <span class="
+                        material-icons-sharp 
+                        theme-toggler__button--dark
+                        theme-toggler__button">dark_mode</span>
+                    </div>
+
+                    <div class="profile">
+                        <div class="profile__info">
+                            <p>Hey, <b class="user-name">
+
+                                </b></p>
+                            <small class="text-muted">SDL-1</small>
+                        </div>
+                        <div>
+                            <a href="/profile"> <img class="profile__photo"
+                                    src="https://hrms.appdemoserver.com/assets/img/avatars/profile_image.jpg"
+                                    data-toggle="dropdown" alt="profile-picture" id="dropdown-trigger">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Recents Updates -->
+                <div class="recent-updates">
+                    <div class="recent-updates__container" id="recents">
+
+
+                        <h2 class="card-title">Today's Action</h2>
+                        <div class="hr-line"></div>
+                        <div class="action-top">
+
+                            <div class="date">
+                                <span class="card-title-small">Current Date</span>
+                                <span class="small-text" id="current-date"></span>
+                            </div>
+                            <div class="time">
+                                <span class="card-title-small">Current Time</span><br>
+                                <span class="small-text" id="current-time"></span>
+                            </div>
+
+                        </div>
+
+                        <% if(checked_out=="not" ) { %>
+                            <div class="button" id="buttons">
+                                <button class="checkin action-btn <% if(hasCheckedIn) { %> disabling<% } %>"
+                                    id="check-in" <% if(hasCheckedIn) { %> disabled <% } %>>
+                                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                        <div class="check">
+                                            Check In
+                                        </div>
+                                </button>
+                                <button
+                                    class="breakin action-btn <% if(breakAns == false || hasCheckedIn == false) { %> disabling<% } %>"
+                                    id="break-in" <% if(breakAns==false) { %> disabled<% } %>>
+                                        <i class="fa-solid fa-utensils"></i>
+                                        <div class="check">
+                                            Break In
+                                        </div>
+                                </button>
+                                <button
+                                    class="checkout action-btn <% if(breakAns == false || hasCheckedIn == false) { %> disabling<% } %>"
+                                    id="check-out" <% if(breakAns==false) { %> disabled<% } %>>
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                        <div class="check">
+                                            Check Out
+                                        </div>
+                                </button>
+                                <button
+                                    class="breakout action-btn <% if(breakoutAns || hasCheckedIn == false) { %> disabling<% } %>"
+                                    id="break-out" <% if(breakoutAns) { %> disabled <% } %> >
+                                        <!-- <i class="fa-solid fa-right-from-bracket"></i>
+                             -->
+                                        <img class="img-breakout"
+                                            src="https://hrms.appdemoserver.com/assets/img/icons/break-out.svg" alt="">
+                                        <div class="check">
+                                            Break Out
+                                        </div>
+                                </button>
+                            </div>
+                            <% } %>
+
+                                <% if(checked_out=="checkout" ) { %>
+                                    <div class="final_message"><i class="fa-solid fa-face-smile"
+                                            style="color: #ffffff;"></i> Thank you for your presence</div>
+                                    <% } %>
+
+                    </div>
+                </div>
+
+                <!-- below recent update -->
+
+                <div class="recent-updates">
+
+
+                    <div class="recent-updates__container">
+                        <h2 class="recent-updates__title card-title">Attendance</h2>
+
+                        <div style="margin-bottom: 15px;" class="hr-line"></div>
+
+                        <div class="attendance-backlog" id="backlog">
+                            <% if(attendance) { %>
+
+
+                                <% if(attendance?.check_in) {%>
+                                    <div class="check_in">
+                                        <span>Checked In : <%= attendance?.check_in %></span>
+                                    </div>
+                                    <% } %>
+
+                                        <% if(activity) { %>
+
+                                            <% for(let i=0; i<activity.length; i++) { %>
+                                                <% if(activity[i].break_in) { %>
+                                                    <div class="break_in">
+                                                        <span>Breaked In : <%= activity[i].break_in %>
+                                                        </span>
+                                                    </div>
+                                                    <% } %>
+
+                                                        <% if(activity[i].break_out !="00:00:00" ) { %>
+                                                            <div class="break_out">
+                                                                <span>Breaked Out : <%= activity[i].break_out %>
+                                                                </span>
+                                                            </div>
+                                                            <% } %>
+
+                                                                <% } %>
+
+                                                                    <% } %>
+
+                                                                        <% if(attendance?.check_out !="0" ) {%>
+                                                                            <div class="check_out ">
+                                                                                <span>Checked Out :
+                                                                                    <%= attendance?.check_out %>
+                                                                                </span>
+                                                                            </div>
+                                                                        <% } %>
+                                                        <% } %>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <div class="mobile-message hidden">
+        This Website is not accessible in mobile device.
+    </div>
+
+
+
+
+
+    <script src="https://kit.fontawesome.com/30e122f54b.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <!-- <script src="/js/home.js"></script> -->
+    <script src="/js/main.js"></script>
+
+
+</body>
+
+</html>

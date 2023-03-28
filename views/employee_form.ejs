@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Forms</title>
+    <link rel="stylesheet" href="/css/employee_form.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .btnPrevious,
+        .btnNext {
+            display: inline-block;
+            border: 1px solid #444348;
+            border-radius: 3px;
+            margin: 5px;
+            color: #444348;
+            font-size: 14px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+
+    <nav class="navbar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <div class="sidebar-brand-logo">
+                <img src="" class="logo-full">
+            </div>
+        </a>
+    </nav>
+    <div id="wrapper">
+        <form action="/employee-data/insert" method="post">
+
+            <div id="content-wrapper" class="container d-flex flex-column">
+                <div id="content">
+                    <div class="container-fluid">
+                        <div class="tabControl">
+                            <div class="container">
+                                <div class="tabs">
+                                    <ul class="nav nav-pills nav-fill" id="pills-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                                                href="#pills-1" role="tab"><i
+                                                    class="fa-solid fa-circle-exclamation"></i>
+                                                Basic Info</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill"
+                                                href="#pills-2" role="tab"><i class="fa-solid fa-phone"></i> Contact
+                                                Info</a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-company-tab" data-toggle="pill"
+                                                href="#pills-5" role="tab"><i class="fa-solid fa-building-columns"></i>
+                                                Company Relation
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-docs-tab" data-toggle="pill" href="#pills-3"
+                                                role="tab"><i class="fa-solid fa-file"></i>
+                                                Documentation</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-social-tab" data-toggle="pill" href="#pills-4"
+                                                role="tab"><i class="fa-solid fa-share-nodes"></i>
+                                                Social
+                                                Network</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-1" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <div class="basic-info" id="basic-tab">
+                                        <div class="all">
+                                            <div class="image">
+                                                <div class="card-header">
+                                                    <h4> <i class="fa-regular fa-face-smile"></i> Photo</h4>
+                                                </div>
+                                                <div class="photo">
+
+                                                    <div><img
+                                                            src="https://hrms.appdemoserver.com/assets/img/avatars/profile_image.jpg"
+                                                            alt="profile DP" id="chosen-image"></div>
+                                                    <div class="round">
+                                                        <input type="file" name="dp" id="upload-button" accept="image/*"
+                                                            onblur="return require_validate(this, 'imgErr')">
+                                                        <span id="imgErr"></span>
+
+                                                        <label for="upload-button" id="upload-image"
+                                                            onclick="uploadImage()">Upload Image</label>
+                                                        <label for="remove-button" id="remove-image">Remove</label>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="info">
+                                                <div class="card-header">
+                                                    <h4> Basic information</h4>
+                                                </div>
+                                                <div class="form" id="basic-info">
+                                                    <div class="part">
+                                                        <label for="name">Full Name</label>
+                                                        <input class="btn-style in-width" type="text" name="name"
+                                                            id="fullname" maxlength="40"
+                                                            onkeyup="return validateFullName()"
+                                                            onblur="return require_validate(this, 'name_msg')" >
+                                                        <br><span id="name_msg" class="err_msg"></span>
+
+                                                        <label for="email">Email</label>
+                                                        <input class="in-width" type="email" name="email" id="email"
+                                                            onblur="return require_validate(this, 'email_msg')"
+                                                            onkeyup="return validateEmail()" value="<%= email[0][0].email%>" disabled>
+                                                        <br><span id="email_msg" class="err_msg"></span>
+
+                                                        <label for="gender">Gender</label>
+                                                        <select name="gender" id="gender">
+                                                            <option value="male">Male</option>
+                                                            <option value="female">Female</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="part">
+                                                        <label for="bdate">Date of Birth</label>
+                                                        <input type="text" name="dob" id="dob" value=" "
+                                                            >
+                                                        <br><span id="dateErr" class="err_msg"></span>
+                                                        <label for="status">Marital status</label>
+                                                        <select name="status" id="status">
+                                                            <option value="Married">Married</option>
+                                                            <option value="Unmarried">Unmarried</option>
+                                                        </select>
+                                                        <label for="WFH">Work From Home</label>
+                                                        <div class="toggle">
+                                                            Yes<div class="work"> <input class="wfh" type="radio"
+                                                                    name="wfh" class="toggle" id="wfh_yes" value="1">
+                                                            </div>
+                                                            No<div class="work"><input class="wfh" type="radio"
+                                                                    name="wfh" class="toggle" id="wfh_no" value="0"
+                                                                    checked></div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3" id="btnNext">
+                                        <input type="button" value="Next" class="btn btn-primary btnNext"
+                                            id="basicnextBtn" disabled>
+                                        <!-- <button class="btn btn-primary btnNext" id="nextBtn" disabled>Next</button> -->
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-2" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+
+                                    <div class="tab-content" id="contact-tab">
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>
+                                                    <i class="fa-solid fa-phone"></i>
+                                                    Contact Information
+                                                </h4>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col col1">
+                                                        <div class="form-group">
+                                                            <label for="current_address">Current Address</label>
+                                                            <textarea name="current_address" class="form-control"
+                                                                id="current_address" cols="30" rows="3"
+                                                                onblur="return require_validate(this, 'current_address_msg')"></textarea>
+                                                            <span id="current_address_msg" class="err_msg"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="parmanent_address">Permanent Address</label>
+                                                            <textarea name="permanent_address" class="form-control"
+                                                                id="permanent_address" cols="30" rows="3"
+                                                                onblur="return require_validate(this, 'parmanent_address_msg')"></textarea>
+                                                            <span id="parmanent_address_msg" class="err_msg"></span>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col col2">
+                                                        <div class="form-group">
+                                                            <label for="Contact Number">Contact Number</label>
+                                                            <input type="text" name="contact" class="form-control"
+                                                                id="contact"
+                                                                onblur="return require_validate(this, 'contact_msg')"
+                                                                maxlength="10"
+                                                                onkeyup="return num_validate(this, 'contact_msg')">
+                                                            <span id="contact_msg" class="err_msg"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="emergency_contact">Emergency Contact
+                                                                Number</label>
+                                                            <input type="text" name="emergency_contact"
+                                                                class="form-control" id="emergency_contact"
+                                                                onblur="return require_validate(this, 'emergency_contact_msg')"
+                                                                maxlength="10"
+                                                                onkeyup="return num_validate(this, 'emergency_contact_msg') ">
+                                                            <span id="emergency_contact_msg" class="err_msg"></span>
+
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="emergency_person">Emergency Contact
+                                                                Person</label>
+                                                            <input type="text" name="emergency_person"
+                                                                class="form-control" id="emergency_person" onkeyup="return person_validate(this,'emergency_person_msg')"
+                                                                onblur="return require_validate(this, 'emergency_person_msg')"
+                                                                >
+                                                            <span id="emergency_person_msg" class="err_msg"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="navbuttons">
+                                        <div class="col-6 col-sm-3" id="btnPrevious">
+                                            <a class="btn btn-primary btnPrevious">Previous</a>
+                                        </div>
+                                        <div class="col-6 col-sm-3" id="btnNext">
+                                            <input type="button" value="Next" class="btn btn-primary btnNext"
+                                                id="contactnextbtn" disabled>
+
+                                            <!-- <a class="btn btn-primary btnNext">Next</a> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="pills-5" role="tabpanel"
+                                    aria-labelledby="pills-company-tab">
+
+                                    <div class="tab-content" id="company-tab">
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4>
+                                                    <i class="fa-solid fa-building-columns"></i>
+                                                    <!-- <i class="fa-solid fa-phone"></i> -->
+                                                    Company relation
+                                                </h4>
+                                            </div>
+
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col col1">
+                                                        <div class="form-group">
+                                                            <label for="current_address">Designation</label>
+                                                            <input type="text" name="designation" id="designation"
+                                                            onkeyup="return person_validate(this,'designation_msg')"
+                                                                onblur="return require_validate(this, 'designation_msg')">
+                                                            <span id="designation_msg" class="err_msg"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="parmanent_address">Department</label>
+                                                            <input type="text" name="department" id="department"
+                                                            onkeyup="return person_validate(this,'department_msg')"
+                                                                onblur="return require_validate(this, 'department_msg')">
+
+                                                            <span id="department_msg" class="err_msg"></span>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col col2">
+                                                        <div class="form-group">
+                                                            <label for="Contact Number">Join Date</label>
+                                                            <input type="date" name="join_date" id="join_date"
+                                                                onblur="return require_validate(this, 'join_date_msg')">
+                                                            <span id="join_date_msg" class="err_msg"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="emergency_contact">Probation Date</label>
+                                                            <input type="date" name="probation_date" id="probation_date"
+                                                                onblur="return require_validate(this, 'probation_date_msg')">
+
+                                                            <span id="probation_date_msg" class="err_msg"></span>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="navbuttons">
+                                        <div class="col-6 col-sm-3" id="btnPrevious">
+                                            <a class="btn btn-primary btnPrevious">Previous</a>
+                                        </div>
+                                        <div class="col-6 col-sm-3" id="btnNext">
+                                            <input type="button" value="Next" class="btn btn-primary btnNext"
+                                                id="companynextbtn" disabled>
+
+                                            <!-- <a class="btn btn-primary btnNext">Next</a> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="pills-3" role="tabpanel"
+                                    aria-labelledby="pills-doc-tab">
+                                    <div class="tab-content" id="doc-tab">
+
+                                        <div class="section1">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>
+                                                        Aadhar Card
+                                                    </h4>
+                                                </div>
+
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col col1">
+                                                            <label for="aadhar_num">Number</label>
+                                                            <input type="text" name="aadhar_num" id="aadhar_num"
+                                                                onblur="return require_validate(this, 'aadhar_num_msg')"
+                                                                maxlength="12" onkeyup="return aadhar_validate()">
+                                                            <span id="aadhar_num_msg" class="err_msg"></span>
+                                                        </div>
+
+                                                        <div class="col col2">
+                                                            <label for="scan_copy">Scan Copy</label>
+
+                                                            <div class="upload-doc">
+                                                                <!-- <label for="upload-aadhar" >Select</label> -->
+                                                                <input type="file" class="btn btn-select upload-btn"
+                                                                    value="Choose File" id="aadhar_doc"
+                                                                    onblur="return require_validate(this, 'aadhar_upload')">
+                                                                <span id="aadhar_upload" class="err_msg"></span>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+                                        <div class="section2">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>
+                                                        PAN Card
+                                                    </h4>
+                                                </div>
+
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col col1">
+                                                            <label for="pan_num">Number</label>
+                                                            <input type="text" name="pan_num" id="pan_num"
+                                                                onblur="return require_validate(this, 'pan_msg')"
+                                                                maxlength="10" onkeyup="return pan_validate()">
+                                                            <span id="pan_msg" class="err_msg"></span>
+                                                        </div>
+
+                                                        <div class="col col2">
+                                                            <label for="scan_copy">Scan Copy</label>
+                                                            <input type="file" class="btn btn-select"
+                                                                value="Choose File" id="pan_doc"
+                                                                onblur="return require_validate(this, 'pan_upload')">
+                                                            <span id="pan_upload" class="err_msg"></span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="section2">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h4>
+                                                            Cheque
+                                                        </h4>
+                                                    </div>
+
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col col1">
+                                                                <label for="cheque_num">Number</label>
+                                                                <input type="text" name="cheque_num" id="cheque_num"
+                                                                    onblur="return require_validate(this, 'cheque_msg')"
+                                                                    maxlength="6" onkeyup="return cheque_validate()">
+                                                                <span id="cheque_msg" class="err_msg"></span>
+                                                            </div>
+
+                                                            <div class="col col2">
+                                                                <label for="scan_copy">Scan Copy</label>
+                                                                <input type="file" class="btn btn-select"
+                                                                    value="Choose File" id="cheque_doc"
+                                                                    onblur="return require_validate(this, 'cheque_upload')">
+                                                                <span id="cheque_upload" class="err_msg"></span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+
+                                                </div>
+                                                <div class="section2">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h4>
+                                                                Resume
+                                                            </h4>
+                                                        </div>
+
+                                                        <div class="card-body">
+                                                            <div class="row">
+
+
+                                                                <div class="col col2">
+                                                                    <label for="scan_copy">Scan Copy</label>
+                                                                    <input type="file" class="btn btn-select"
+                                                                        id="resume_doc" value="Choose File"
+                                                                        onblur="return require_validate(this, 'resume_upload')">
+                                                                    <span id="resume_upload" class="err_msg"></span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="navbuttons">
+                                        <div class="col-6 col-sm-3" id="btnPrevious">
+                                            <a class="btn btn-primary btnPrevious">Previous</a>
+                                        </div>
+
+                                        <div class="col-6 col-sm-3" id="btnNext">
+                                            <input type="button" value="Next" class="btn btn-primary btnNext"
+                                                id="docnextBtn" disabled>
+
+                                            <!-- <a class="btn btn-primary btnNext">Next</a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-4" role="tabpanel"
+                                    aria-labelledby="pills-social-tab">
+                                    <div class="social-network " id="social-tab">
+                                        <div class="content">
+                                            <p>Social Network</p>
+                                        </div>
+                                        <div class="media">
+                                            <div class="media-1">
+                                                <label for="twitter">Twitter username</label>
+                                                <input type="text" name="tname" id="twitter"
+                                                    onblur="return require_validate(this, 'twitter_msg')">
+                                                <br>&nbsp&nbsp&nbsp&nbsp<span id="twitter_msg" class="err_msg"></span>
+                                            </div>
+                                            <div class="media-1">
+                                                <label for="linkedin">LinkedIn username</label>
+                                                <input type="text" name="lname" id="linkedin"
+                                                    onblur="return require_validate(this, 'linkedin_msg')">
+                                                <br>&nbsp&nbsp&nbsp&nbsp<span id="linkedin_msg" class="err_msg"></span>
+                                            </div>
+                                            <div class="media-1">
+                                                <label for="github">Github username</label>
+                                                <input type="text" name="gname" id="github"
+                                                    onblur="return require_validate(this, 'github_msg')">
+                                                <br>&nbsp&nbsp&nbsp&nbsp<span id="github_msg" class="err_msg"></span>
+                                            </div>
+                                            <div class="media-1">
+                                                <label for="facebook">Facebook username</label>
+                                                <input type="text" name="fname" id="facebook"
+                                                    onblur="return require_validate(this, 'facebook_msg')">
+                                                <br>&nbsp&nbsp&nbsp&nbsp<span id="facebook_msg" class="err_msg"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="navbuttons">
+                                        <div class="col-6 col-sm-3" id="btnPrevious">
+                                            <a class="btn btn-primary btnPrevious">Previous</a>
+                                        </div>
+
+
+
+
+                                        <div class="col-6 col-sm-3" id="btnNext">
+                                            <input type="submit" value="Submit" class="btn btn-primary btnNext update"
+                                                id="final_update" disabled>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </form>
+
+
+
+    </div>
+
+
+</body>
+<!-- Bootstrap -->
+<script src="/js/employee-form.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+
+<script src="https://kit.fontawesome.com/1b59bc20c8.js"></script>
+
+<script>
+    var $x = jQuery.noConflict();
+    $x('.btnNext').click(function () {
+        $x('.nav-pills .active').parent().next('li').find('a').trigger('click');
+    });
+
+    $x('.btnPrevious').click(function () {
+        $x('.nav-pills .active').parent().prev('li').find('a').trigger('click');
+    });
+
+
+</script>
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    var $y = jQuery.noConflict();
+
+    function DoPrevent(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    $y(function () {
+
+
+        var date = new Date();
+        console.log(date);
+        var currentMonth = date.getMonth();
+        var currentDate = date.getDate();
+        var currentYear = date.getFullYear();
+        console.log("hii");
+        $y('#dob').datepicker({
+            maxDate: new Date(currentYear, currentMonth, currentDate)
+
+        });
+
+        $y(window).on("load", function () {
+            $y("#pills-contact-tab").on('click', DoPrevent);
+            $y("#pills-company-tab").on('click', DoPrevent);
+            $y("#pills-docs-tab").on('click', DoPrevent);
+            $y("#pills-social-tab").on('click', DoPrevent);
+
+        });
+
+
+        $y("#dob").on("change", function () {
+
+            var selected = $y(this).val();
+            console.log("date", $y("#dob").val())
+            if (selected == "" || $y("#fullname").val() == "" || $y("#email").val() == "") {
+
+                $y("#basicnextBtn").attr("disabled", true);
+                $y("#pills-contact-tab").on('click', DoPrevent);
+                $y("#pills-company-tab").on('click', DoPrevent);
+                $y("#pills-docs-tab").on('click', DoPrevent);
+                $y("#pills-social-tab").on('click', DoPrevent);
+
+            }
+
+            else {
+                $y("#basicnextBtn").attr("disabled", false);
+                $y("#pills-contact-tab").off('click', DoPrevent);
+                $y("#pills-company-tab").on('click', DoPrevent);
+                $y("#pills-docs-tab").on('click', DoPrevent);
+                $y("#pills-social-tab").on('click', DoPrevent);
+
+            }
+        });
+        $y("#fullname").on("change", function () {
+
+            var selected = $y(this).val();
+            console.log("date", $y("#dob").val())
+            if ($y("#fullname").val() == "" || $y("#email").val() == "" || validateFullName() || $y("#dob").data('clicked', 'true')) {
+
+                $y("#basicnextBtn").attr("disabled", true);
+                $y("#pills-contact-tab").on('click', DoPrevent);
+                $y("#pills-docs-tab").on('click', DoPrevent);
+                $y("#pills-social-tab").on('click', DoPrevent);
+
+            } else {
+
+                $y("#basicnextBtn").attr("disabled", false);
+
+                $y("#pills-contact-tab").off('click', DoPrevent);
+                $y("#pills-company-tab").on('click', DoPrevent);
+                $y("#pills-docs-tab").on('click', DoPrevent);
+                $y("#pills-social-tab").on('click', DoPrevent);
+
+            }
+        });
+        $y("#email").on("change", function () {
+
+            var selected = $y(this).val();
+            console.log("date", $y("#dob").val())
+            if ($y("#fullname").val() == "" || $y("#email").val() == "" || $y("#dob").data('clicked')) {
+
+                if (!$y("#dob").data('clicked')) {
+
+                    $y("#basicnextBtn").attr("disabled", true);
+                    $y("#pills-contact-tab").on('click', DoPrevent);
+                    $y("#pills-company-tab").on('click', DoPrevent);
+                    $y("#pills-docs-tab").on('click', DoPrevent);
+                    $y("#pills-social-tab").on('click', DoPrevent);
+                }
+
+            } else {
+                if ($y("#dob").data('clicked')) {
+
+                    $y("#basicnextBtn").attr("disabled", false);
+                    $y("#pills-contact-tab").off('click', DoPrevent);
+                    $y("#pills-company-tab").on('click', DoPrevent);
+                    $y("#pills-docs-tab").on('click', DoPrevent);
+                    $y("#pills-social-tab").on('click', DoPrevent);
+                }
+
+            }
+        });
+
+
+
+        $y("#contact-tab").on("mousemove", function () {
+
+            if ($y("#emergency_person").val() == "" || $y("#emergency_contact").val() == "" || $y("#permanent_address").val() == "" || $y("#current_address").val() == "" || $y("#contact").val() == "") {
+
+                $y("#contactnextbtn").attr("disabled", true);
+                $y("#pills-company-tab").on('click', DoPrevent);
+                $y("#pills-docs-tab").on('click', DoPrevent);
+                $y("#pills-social-tab").on('click', DoPrevent);
+
+            } else {
+                $y("#contactnextbtn").attr("disabled", false);
+
+                $y("#pills-company-tab").off('click', DoPrevent);
+                $y("#pills-docs-tab").on('click', DoPrevent);
+                $y("#pills-social-tab").off('click', DoPrevent);
+
+            }
+        })
+        $y("#company-tab").on("mousemove", function () {
+
+            if ($y("#designation").val() == "" || $y("#department").val() == "" || $y("#join_date").val() == "" || $y("#probation_date").val() == "") {
+
+                $y("#companynextbtn").attr("disabled", true);
+                $y("#pills-docs-tab").on('click', DoPrevent);
+                $y("#pills-social-tab").on('click', DoPrevent);
+            } else {
+                $y("#companynextbtn").attr("disabled", false);
+                $y("#pills-docs-tab").off('click', DoPrevent);
+                $y("#pills-social-tab").on('click', DoPrevent);
+
+            }
+        })
+
+
+        $y("#doc-tab").on("mousemove", function () {
+
+            if ($y("#aadhar").val() == "" || $y("#pan").val() == "" || $y("#cheque").val() == "" || $y("#aadhar_num").val() == "" || $y("#pan_num").val() == "" || $y("#cheque_num").val() == "" || $y("#resume").val() == "") {
+                $y("#docnextBtn").attr("disabled", true);
+                $y("#pills-social-tab").on('click', DoPrevent);
+
+            } else {
+                $y("#docnextBtn").attr("disabled", false);
+                $y("#pills-social-tab").off('click', DoPrevent);
+
+            }
+        })
+        $y("#social-tab").on("mousemove", function () {
+
+            console.log($y("#twitter").val());
+
+            if ($y("#linkedin").val() == "" || $y("#twitter").val() == "" || $y("#git").val() == "" || $y("#fb").val() == "") {
+                $y("#final_update").attr("disabled", true);
+
+            } else {
+                $y("#final_update").attr("disabled", false);
+            }
+        })
+
+
+    });
+
+</script>
+</html>

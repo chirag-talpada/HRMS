@@ -1,0 +1,416 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: url('../assets/company.jpg');
+    background-size: cover;
+}
+
+.container {
+    padding: 30px;
+    background-color: #e6ecf5;
+}
+
+.tab-content {
+    margin-top: -1px;
+    /* background: #fff; */
+    border-radius: 5px;
+}
+
+.tab-container {
+    padding: 15px;
+}
+
+.tab-pane {
+    padding: 20px;
+}
+
+.nav-tabs .nav-link {
+    color: black;
+}
+
+
+.row {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.col {
+    margin-right: 16px;
+}
+
+.col1 div {
+    display: flex;
+    flex-direction: column;
+}
+
+.col2 div {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    margin-bottom: 1.5rem;
+
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    position: relative;
+}
+
+.form-control {
+    border: 1px solid #eee;
+    color: #5c6873;
+    ;
+}
+
+.card-header {
+    background-image: linear-gradient(to right bottom, #132f4c, #123957, #0e4363, #084e6e, #005978);
+    color: white;
+}
+
+.card-header h4 {
+    font-size: 16px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-footer div button {
+    color: #002f4b;
+
+}
+
+.card-footer .update {
+    border-radius: 10px;
+    background-image: linear-gradient(to right bottom, #132f4c, #123957, #0e4363, #084e6e, #005978);
+    color: #fff;
+    padding: 8px 20px
+}
+
+.card-footer {
+    border-top: 0 !important;
+}
+
+.update {
+    position: relative;
+    right: 30px;
+}
+
+/* -------------------------documentation-------------------------------- */
+
+.row {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border: 1px solid #c8ced3;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input[type=button] {
+    color: white;
+    background-image: linear-gradient(to right bottom, #132f4c, #123957, #0e4363, #084e6e, #005978);
+    width: 100px;
+    border-radius: 15px;
+
+}
+
+
+
+.container {
+    width: 1170px;
+    margin: 0 auto;
+}
+
+.basic-info {
+
+    margin-top: 2rem;
+}
+
+.all {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.image {
+    width: 22%;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.photo input {
+    margin-left: 1rem;
+}
+
+.info {
+    width: 70%;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    margin-left: 2rem;
+}
+
+.info label {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.in-width {
+    width: 80%;
+    margin-top: 4px;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.part {
+    width: 50%;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+
+.wfh {
+    margin-right: 1rem;
+}
+
+.toggle {
+    display: flex;
+}
+
+.work {
+    margin-left: 10px;
+}
+
+/* ----------------------------social--------------------------
+     */
+.social-network {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    height: 300px;
+    margin-top: 2rem;
+}
+
+.content {
+    background-image: linear-gradient(to right bottom, #132f4c, #123957, #0e4363, #084e6e, #005978);
+
+    color: white;
+    height: 40px;
+
+}
+
+.content p {
+    margin-left: 1rem;
+    padding-top: 8px;
+}
+
+.media {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.media-1 {
+    width: 50%;
+
+}
+
+.media-1 label {
+    width: 100%;
+    margin-left: 1rem;
+    margin-top: 2rem;
+}
+
+.media-1 input {
+    width: 80%;
+    height: 30px;
+    margin-left: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.submit {
+    margin-top: 1rem;
+    float: right;
+}
+
+.submit input {
+    background-color: skyblue;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+#upload-image {
+    display: block;
+    position: relative;
+    background-color: #002f4b;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 200px;
+    padding: 10px 0;
+    border-radius: 5px;
+    margin: auto;
+    cursor: pointer;
+}
+
+#remove-image {
+    display: none;
+    position: relative;
+    background-color: #e93b35;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 200px;
+    padding: 10px 0;
+    border-radius: 5px;
+    margin: auto;
+    cursor: pointer;
+}
+
+.photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo div {
+    margin: 10px;
+}
+
+.photo img {
+    display: block;
+    position: relative;
+    object-fit: cover;
+    border: none;
+    width: 200px;
+    height: 200px;
+}
+
+.nav-pills .nav-link {
+    color: black;
+}
+
+.nav-pills .nav-link.active {
+    background-image: linear-gradient(to right bottom, #132f4c, #123957, #0e4363, #084e6e, #005978);
+
+
+}
+
+.btn-primary {
+    background-image: linear-gradient(to right bottom, #132f4c, #123957, #0e4363, #084e6e, #005978);
+    border: #132f4c;
+    margin-top: 30px;
+
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.navbuttons {
+    display: grid;
+    grid-template-columns: 50% 10%;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.col-sm-3 {
+    flex: 0 0 0%;
+}
+
+#btnPrevious {
+    margin-right: 0;
+}
+
+#upload-button {
+    display: none;
+}
+
+
+.tabControl {
+    border: 1px solid #c8ced3;
+    background-color: white;
+}
+
+.btn-select {
+    border: 1px solid #c8ced3;
+    text-align: left;
+    width: 400px;
+    display: none;
+
+}
+
+input[type="file"] {
+    border: 1px solid #c8ced3;
+    text-align: left;
+    width: 400px;
+}
+
+#btnPrevious {
+    color: white;
+}
+
+#btnNext {
+    color: white;
+
+}
+
+
+
+div#wrapper {
+    width: 1086px;
+    margin: 0 auto;
+}
+
+#wrapper {
+    margin-bottom: 30px;
+}
+
+form {
+    margin-bottom: 30px;
+}
+
+#content-wrapper {
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+
+#btnNext {
+    margin-top: 20px;
+}
+
+.disabled-submit {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#contactnextbtn {
+    position: relative;
+    left: -35px;
+}
+
+.err_msg {
+    color: red;
+    padding-top: 5px;
+}
